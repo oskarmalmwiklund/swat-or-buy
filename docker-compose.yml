@@ -1,0 +1,15 @@
+services:
+  swat:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/data
+      - ./results:/results
+    environment:
+      SWAT_MAX_SECONDS: "5"
+      SWAT_MAX_TRIALS: "10"
+    deploy:
+      resources:
+        limits:
+          memory: 6g

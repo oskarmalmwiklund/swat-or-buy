@@ -1,0 +1,186 @@
+[
+ {
+  "file": "vintage-coca-cola-1890s.jpg",
+  "name": "Coca-Cola (1890s)",
+  "kind": "vintage",
+  "note": "Drink Coca-Cola, 5 cents",
+  "credit": "Wikimedia Commons, public domain: Cocacola-5cents-1900 edit1.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "vintage-kodak-1900.jpg",
+  "name": "Kodak (1900)",
+  "kind": "vintage",
+  "note": "Folding Pocket Kodak",
+  "credit": "Wikimedia Commons, public domain: Folding Pocket Kodak Camera ad 1900.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "vintage-pears-1912.jpg",
+  "name": "Pears' Soap (1912)",
+  "kind": "vintage",
+  "note": "Bubbles, after Millais",
+  "credit": "Wikimedia Commons, public domain: Bubbles by Sir John E Millais.png",
+  "license": "Public domain"
+ },
+ {
+  "file": "vintage-michelin-1898.jpg",
+  "name": "Michelin (1898)",
+  "kind": "vintage",
+  "note": "Nunc est bibendum, by O’Galop",
+  "credit": "Wikimedia Commons, public domain: Michelin Poster 1898.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "vintage-menier-1894.jpg",
+  "name": "Chocolat Menier (1894)",
+  "kind": "vintage",
+  "note": "by Firmin Bouisset",
+  "credit": "Wikimedia Commons, public domain: Affiche Chocolat Menier-Bouisset-1894.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "vintage-robette-1896.jpg",
+  "name": "Absinthe Robette (1896)",
+  "kind": "vintage",
+  "note": "by Privat-Livemont",
+  "credit": "Wikimedia Commons, public domain: Privat-Livemont - Absinthe Robette, 1896.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "vintage-campari-1921.jpg",
+  "name": "Bitter Campari (1921)",
+  "kind": "vintage",
+  "note": "by Leonetto Cappiello",
+  "credit": "Wikimedia Commons, public domain: Bitter Campari affiche, Leonetto Cappiello.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "vintage-kelloggs-1909.jpg",
+  "name": "Kellogg's (1909)",
+  "kind": "vintage",
+  "note": "Toasted Corn Flakes",
+  "credit": "Wikimedia Commons, public domain: Kellogg's Toasted Corn Flakes (1909) (ADVERT 427).jpeg",
+  "license": "Public domain"
+ },
+ {
+  "file": "vintage-moulin-rouge-1891.jpg",
+  "name": "Moulin Rouge (1891)",
+  "kind": "vintage",
+  "note": "by Toulouse-Lautrec",
+  "credit": "Wikimedia Commons, public domain: Moulin Rouge – La Goulue, by Henri de Toulouse-Lautrec.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "vintage-job-1896.jpg",
+  "name": "Job (1896)",
+  "kind": "vintage",
+  "note": "by Alphonse Mucha",
+  "credit": "Wikimedia Commons, public domain: Alphonse Mucha - Job Cigarettes 1.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "vintage-victor-1920.jpg",
+  "name": "Victor (1920)",
+  "kind": "vintage",
+  "note": "His Master’s Voice",
+  "credit": "Wikimedia Commons, public domain: His Master's Voice (1920).jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "vintage-ivory-1898.jpg",
+  "name": "Ivory Soap (1898)",
+  "kind": "vintage",
+  "note": "You need only one soap",
+  "credit": "Wikimedia Commons, public domain: You need only one soap-Ivory soap - the Strobridge Lith. Co., Cin'ti & New York. LCCN00650433.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "vintage-ford-1908.jpg",
+  "name": "Ford (1908)",
+  "kind": "vintage",
+  "note": "Model T",
+  "credit": "Wikimedia Commons, public domain: 1908 Ford Model T.jpg",
+  "license": "Public domain"
+ },
+ {
+  "file": "ad-quiet.png",
+  "name": "Quiet. Finally. (mock)",
+  "kind": "mock",
+  "note": "Headphones, white space, one object",
+  "credit": "Mock creative for a fictional brand, made for this project",
+  "license": "MIT"
+ },
+ {
+  "file": "ad-loud.png",
+  "name": "Mega Sale (mock)",
+  "kind": "mock",
+  "note": "Red and yellow discount blast",
+  "credit": "Mock creative for a fictional brand, made for this project",
+  "license": "MIT"
+ },
+ {
+  "file": "mock-nimbus-saas.jpg",
+  "name": "Nimbus (mock)",
+  "kind": "mock",
+  "note": "SaaS, quiet white, one violet button",
+  "credit": "Mock creative for a fictional brand, made for this project",
+  "license": "MIT"
+ },
+ {
+  "file": "mock-aurelia-luxury.jpg",
+  "name": "Aurelia (mock)",
+  "kind": "mock",
+  "note": "Luxury, black, thin serif, gold",
+  "credit": "Mock creative for a fictional brand, made for this project",
+  "license": "MIT"
+ },
+ {
+  "file": "mock-volt-energy.jpg",
+  "name": "Volt (mock)",
+  "kind": "mock",
+  "note": "Energy drink, neon on dark, diagonal",
+  "credit": "Mock creative for a fictional brand, made for this project",
+  "license": "MIT"
+ },
+ {
+  "file": "mock-nordic-bank.jpg",
+  "name": "Nordic Savings (mock)",
+  "kind": "mock",
+  "note": "Bank, calm blue, one big number",
+  "credit": "Mock creative for a fictional brand, made for this project",
+  "license": "MIT"
+ },
+ {
+  "file": "mock-red-burger.jpg",
+  "name": "Big Red Burger (mock)",
+  "kind": "mock",
+  "note": "All red with white text: a red-blind fly test",
+  "credit": "Mock creative for a fictional brand, made for this project",
+  "license": "MIT"
+ },
+ {
+  "file": "mock-drop-sneaker.jpg",
+  "name": "DROP/07 (mock)",
+  "kind": "mock",
+  "note": "Streetwear, black and white, huge type",
+  "credit": "Mock creative for a fictional brand, made for this project",
+  "license": "MIT"
+ },
+ {
+  "file": "mock-meadow-grocer.jpg",
+  "name": "Meadow (mock)",
+  "kind": "mock",
+  "note": "Fresh produce delivery, green, photo-style shapes",
+  "credit": "Mock creative for a fictional brand, made for this project",
+  "license": "MIT"
+ },
+ {
+  "file": "mock-flash-sale.jpg",
+  "name": "Flash Sale (mock)",
+  "kind": "mock",
+  "note": "Discount blast, yellow starburst on magenta",
+  "credit": "Mock creative for a fictional brand, made for this project",
+  "license": "MIT"
+ }
+]

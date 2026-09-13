@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Swat or Buy</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="page">
+  <header class="masthead">
+    <div class="eyebrow">MaleCNS v1.0 · 166,700 neurons · zero opinions about your positioning</div>
+    <h1>Swat or Buy</h1>
+    <p class="lede">Upload one ad to see what a simulated fruit fly brain's optic lobe makes of it, or two ads to show them side by side. Images or a video up to five seconds. The fly cannot read.</p>
+  </header>
+
+  <section id="gate" class="gate" hidden></section>
+
+  <section id="upload" class="upload">
+    <form id="form">
+      <label class="drop" id="drop" for="files">
+        <input type="file" id="files" name="files" accept="image/*,video/*" multiple>
+        <span class="drop-title">Drop one or two ads here</span>
+        <span class="drop-sub">PNG, JPG, WebP, GIF, MP4, MOV, WebM · 40 MB each</span>
+        <span id="picked" class="picked"></span>
+      </label>
+      <div class="controls">
+        <label>Trials <input type="number" id="trials" name="trials" min="1" max="10" value="3"></label>
+        <label>Video seconds <input type="number" id="seconds" name="max_seconds" min="0.5" max="5" step="0.5" value="3"></label>
+        <button type="submit" id="go" class="go">Show the fly</button>
+      </div>
+      <p id="status" class="status" role="status"></p>
+    </form>
+  </section>
+
+  <section id="result" class="result" hidden></section>
+
+  <footer class="foot">
+    <p>Simulator from <a href="https://github.com/Fluffet/bananflugakompassen">Bananflugakompassen</a>, <a href="https://github.com/nftechie/stonkfly">Stonkfly</a> and <a href="https://github.com/nftechie/doomfly">DOOMFLY</a> (MIT). Connectome: <a href="https://male-cns.janelia.org/">MaleCNS v1.0</a>, the MaleCNS collaboration, CC BY 4.0. Every score is a readout of an engineered model, not fly behaviour.</p>
+  </footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
