@@ -8,7 +8,8 @@ Upload one ad and see what the fly's optic lobe makes of it. Upload two and they
 by side, once in each screen order. Stills or video up to five seconds. The fly cannot read.
 
 **Live:** [swat-or-buy.vercel.app](https://swat-or-buy.vercel.app) · the browser game show. The
-Python service below is the full-brain, null-controlled report.
+Python service below is the full-brain, null-controlled report. Swat or Buy is an experiment by
+[Multiply](https://multiply.co).
 
 ## How the show works, in pictures
 
@@ -59,8 +60,9 @@ who advanced. The final gets the full verdict.
 
 ![Bracket](docs/screenshots/08-bracket.jpg)
 
-**9. Save the card.** A 1200×630 PNG of the face-off with the stamps, the scores and the
-human-vs-fly line, for sharing.
+**9. Share the verdict.** A pre-written post with the result and the site link, one click
+to X, LinkedIn, Bluesky, Threads, WhatsApp, Facebook, Reddit or email, and the verdict card
+as a 1200×630 PNG to copy, save or hand to the device share sheet.
 
 ![Verdict card](docs/screenshots/09-verdict-card.jpg)
 

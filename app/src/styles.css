@@ -193,7 +193,9 @@ main { padding: 12px; }
 .result .human.disagree { background: var(--orange-wash); color: var(--orange-ink); }
 .result .card-preview { display: grid; gap: 7px; justify-items: center; width: 200px; }
 .result .card-preview img { width: 100%; aspect-ratio: 1200 / 630; border-radius: 8px; border: 1px solid var(--line); box-shadow: 0 8px 24px rgba(0,0,0,0.25); background: var(--stage-dark); display: block; }
-.result .card-preview .primary-button { padding: 9px 16px; font-size: 13px; min-height: 38px; width: 100%; }
+.result .card-preview .row { display: flex; gap: 6px; width: 100%; }
+.result .card-preview .primary-button { padding: 9px 12px; font-size: 13px; min-height: 38px; flex: 1; }
+.result .card-preview .secondary-button { padding: 8px 12px; font-size: 13px; min-height: 38px; }
 .result .card-preview small { font-size: 11px; color: var(--muted); }
 .result .actions { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
 .result .actions .secondary-button { font-size: 13px; min-height: 38px; padding: 8px 14px; }
@@ -386,6 +388,30 @@ main { padding: 12px; }
 .facts { display: flex; gap: 22px; flex-wrap: wrap; padding: 14px 16px; background: var(--wash); border-radius: 12px; margin: 14px 0; }
 .facts span { display: grid; gap: 2px; font-size: 12px; color: var(--muted); }
 .facts b { font-family: var(--display); font-size: 22px; color: var(--ink); letter-spacing: -0.02em; font-weight: 650; }
+
+/* share dialog */
+.dialog.share { max-width: 760px; }
+.dialog.share .kicker { display: inline-block; font-size: 11px; font-weight: 750; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); background: var(--yellow); border-radius: 20px; padding: 5px 10px; margin-top: 6px; }
+.dialog.share h2 { margin: 10px 28px 18px 0; }
+.share-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
+.share-card img { width: 100%; aspect-ratio: 1200 / 630; border-radius: 10px; border: 1px solid var(--line); box-shadow: 0 10px 30px rgba(0,0,0,0.18); display: block; background: var(--stage-dark); }
+.share-card-actions, .share-post-actions { display: flex; gap: 8px; margin-top: 10px; align-items: center; flex-wrap: wrap; }
+.share-card-actions .secondary-button, .share-post-actions .secondary-button { font-size: 13px; min-height: 38px; padding: 8px 12px; }
+.share-post label { display: block; font-size: 13px; font-weight: 650; margin-bottom: 6px; }
+.share-post label small { font-weight: 400; color: var(--muted); margin-left: 6px; }
+.share-post textarea { width: 100%; resize: vertical; border: 1.5px solid var(--line); border-radius: 12px; padding: 12px 14px; font: inherit; font-size: 14px; line-height: 1.45; color: var(--ink); background: var(--wash); min-height: 150px; }
+.share-post textarea:focus { outline: 3px solid var(--focus); outline-offset: 2px; border-color: transparent; }
+.share-post-actions .count { margin-left: auto; font-size: 11px; color: var(--muted); }
+.share-post-actions .count.over { color: var(--orange-ink); font-weight: 700; }
+.share-nets { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 18px 0 12px; }
+.share-nets .net { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1.5px solid var(--line); border-radius: 12px; padding: 11px 10px; font-size: 14px; font-weight: 650; min-height: 46px; background: var(--paper); }
+.share-nets .net:hover { background: var(--wash); border-color: var(--control-line); }
+.share-nets .net i { width: 10px; height: 10px; border-radius: 50%; background: var(--ink); flex-shrink: 0; }
+.share-nets .net.x i { background: #0A0A0A; } .share-nets .net.linkedin i { background: #0A66C2; } .share-nets .net.bluesky i { background: #1185FE; } .share-nets .net.threads i { background: #000; }
+.share-nets .net.whatsapp i { background: #25D366; } .share-nets .net.facebook i { background: #1877F2; } .share-nets .net.reddit i { background: #FF4500; } .share-nets .net.email i { background: var(--violet); }
+.dialog.share .primary-button.big { width: 100%; margin-bottom: 12px; }
+.share-note { font-size: 12px; color: var(--muted); line-height: 1.5; }
+@media (max-width: 700px) { .share-grid { grid-template-columns: 1fr; } .share-nets { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 .toast { pointer-events: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 100; background: var(--ink); color: var(--paper); border-radius: 12px; padding: 12px 16px; font-size: 13px; max-width: min(90%, 560px); box-shadow: 0 8px 30px rgba(10,10,10,0.3); }
 

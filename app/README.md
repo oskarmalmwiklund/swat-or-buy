@@ -35,8 +35,10 @@ Screenshots of every step are in the [root README](../README.md#how-the-show-wor
 6. **Verdict.** Ads are ranked by the layout-driven part of the lamina's response (glance
    minus shuffled), with side-by-side share, feed pull and hold as tie-breaks. The winner
    gets a BUY stamp and confetti, the loser gets the swatter, and a result card offers
-   **Run it again**, **Save the card** (a 1200×630 PNG of the face-off with the stamps, the
-   scores and the human-vs-fly line) or **New contestants**.
+   **Share the verdict** (a pre-written post for X, LinkedIn, Bluesky, Threads, WhatsApp,
+   Facebook, Reddit or email, plus the 1200×630 verdict card to copy, save or send through the
+   device share sheet; see `src/judge/share.ts`), **Save**, **Run it again** or **New
+   contestants**.
 
 Every sentence the fly says is a measurement that just happened; the first-person voice is
 a convenience, not cognition. Speed, pause and reset live behind the ⚙ button so the

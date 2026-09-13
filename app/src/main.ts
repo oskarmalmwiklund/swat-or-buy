@@ -5,6 +5,7 @@ import './styles.css';
 import { Narrator, type AdResult, type Line } from './judge/narrator';
 import { flat, permutation, scramble, composePair, composeFeed, FEED_RECT } from './judge/measure';
 import { download, renderCard } from './judge/card';
+import { buildPost, copyImage, copyText, hasNativeShare, NETWORKS, shareNative, SITE_URL, xLength } from './judge/share';
 import { loadCircuit, toData, SCREEN_H, SCREEN_W, type Circuit } from './neural/circuit';
 import type { JudgeAd, Snapshot, WorkerCommand, WorkerEvent } from './neural/protocol';
 import { EyeRenderer } from './render/EyeRenderer';
@@ -61,7 +62,7 @@ app.innerHTML = `
             <label class="primary-button big" for="filePick">Add the contestants<input class="hidden-input" type="file" id="filePick" accept="image/*,video/*" multiple></label>
             <button type="button" class="secondary-button" id="sampleButton">Browse the sample ads</button>
           </div>
-          <span class="hero-foot">Or paste an image. Nothing leaves your browser.</span>
+          <span class="hero-foot">Or paste an image. Nothing leaves your browser. An experiment by <a href="https://multiply.co">multiply.co</a>.</span>
         </div>
         <div class="banner" id="banner"><span class="kicker" id="bannerKicker"></span><span class="title" id="bannerTitle"></span><span class="sub" id="bannerSub"></span></div>
         <div class="caption" id="caption" hidden><span class="who">The fly</span><span id="captionText"></span></div>
@@ -70,7 +71,7 @@ app.innerHTML = `
         <div class="verdict-overlay" id="verdictOverlay" hidden><canvas id="confetti"></canvas></div>
         <div class="result" id="result" hidden>
           <div class="lead"><span class="badge" id="resultBadge">BUY</span><div class="text"><h2 id="resultTitle"></h2><p id="resultText"></p><span class="human" id="resultHuman" hidden></span></div></div>
-          <div class="card-preview"><img id="cardPreview" alt="Preview of the verdict card"><button type="button" class="primary-button" id="cardButton">Save the card</button><small>PNG · 1200 × 630 · made for sharing</small></div>
+          <div class="card-preview"><img id="cardPreview" alt="Preview of the verdict card"><div class="row"><button type="button" class="primary-button" id="shareButton">Share the verdict</button><button type="button" class="secondary-button" id="cardButton" title="Download the card as a PNG">Save</button></div><small>Pre-written post + the card as a 1200 × 630 PNG</small></div>
           <div class="actions"><button type="button" class="secondary-button" id="rematchButton">Run it again</button><button type="button" class="secondary-button" id="newButton">New contestants</button></div>
         </div>
         <span class="screen-hint" id="hint" hidden></span>
@@ -109,7 +110,7 @@ app.innerHTML = `
         <div class="tally" id="tally" hidden><i></i><span id="tallyText"></span></div>
         <div class="stream" id="stream"><p class="idle">Every line here is a measurement that just happened in the eye on the right. The fly looks at each ad for a second, then the same pixels shuffled, then a flat grey of the same brightness, then the ad dropped into a busy feed, then both side by side. Then it swats one.</p></div>
       </section>
-      <footer class="mind-foot"><span class="mono" id="footFacts"></span><span>Retina and lamina of <a href="https://male-cns.janelia.org/">MaleCNS v1.0</a> (CC BY 4.0). Model activity, not fly behaviour.</span><span class="foot-links"><button type="button" class="text-button" id="aboutButton2">How it works</button><button type="button" class="text-button" id="creditsButton">Credits</button><a href="https://github.com/oskarmalmwiklund/swat-or-buy">GitHub</a><a href="https://multiply.co">Multiply</a></span></footer>
+      <footer class="mind-foot"><span class="mono" id="footFacts"></span><span>Retina and lamina of <a href="https://male-cns.janelia.org/">MaleCNS v1.0</a> (CC BY 4.0). Model activity, not fly behaviour. An experiment by <a href="https://multiply.co">multiply.co</a>.</span><span class="foot-links"><button type="button" class="text-button" id="aboutButton2">How it works</button><button type="button" class="text-button" id="creditsButton">Credits</button><a href="https://github.com/oskarmalmwiklund/swat-or-buy">GitHub</a><a href="https://multiply.co">Multiply</a></span></footer>
     </aside>
   </section>
   <dialog class="dialog" id="about">
@@ -136,7 +137,21 @@ app.innerHTML = `
       <p>It cannot read, it has no memory of brands, it does not get bored (the model has no adaptation, so a second viewing looks exactly like the first), and in the full 166,700-neuron model the image signal stops at the lamina: nothing deeper responds to picture structure. So this page shows exactly the part that carries signal. The full-brain report with null controls lives in the repository.</p>
       <h3>Credits</h3>
       <p>Connectome: <a href="https://male-cns.janelia.org/">MaleCNS v1.0</a> by the MaleCNS collaboration (FlyEM at HHMI Janelia, the Cambridge Connectomics Group, Google Research), CC BY 4.0. Simulator: a port of <a href="https://github.com/Fluffet/bananflugakompassen">Bananflugakompassen</a> by Fluffet, itself from <a href="https://github.com/nftechie/stonkfly">Stonkfly</a> and DOOMFLY by nftechie, MIT. Design reference: <a href="https://github.com/hrook1/Swat">Swat</a> by hrook1. Palette: <a href="https://multiply.co">Multiply</a>. Type: Bricolage Grotesque by Mathieu Triay, DM Sans by Colophon Foundry, JetBrains Mono by JetBrains, all under the SIL Open Font License. Rendering: Three.js. Vintage sample ads are public-domain works from Wikimedia Commons (O’Galop, Bouisset, Privat-Livemont, Cappiello, Toulouse-Lautrec, Mucha and others); the mock ads were made for this project. Built by Oskar Malm Wiklund at Multiply with Claude Code.</p>
-      <p>Source, data notes and the full-brain report: <a href="https://github.com/oskarmalmwiklund/swat-or-buy">github.com/oskarmalmwiklund/swat-or-buy</a>. Full credits in the repository’s THIRD_PARTY.md.</p>
+      <p>Source, data notes and the full-brain report: <a href="https://github.com/oskarmalmwiklund/swat-or-buy">github.com/oskarmalmwiklund/swat-or-buy</a>. Full credits in the repository’s THIRD_PARTY.md. Swat or Buy is an experiment by <a href="https://multiply.co">Multiply</a>.</p>
+    </div>
+  </dialog>
+  <dialog class="dialog share" id="share">
+    <div class="dialog-body">
+      <button type="button" class="icon-button dialog-close" id="shareClose" aria-label="Close">✕</button>
+      <span class="kicker">Share the verdict</span>
+      <h2>Tell them a fly said so.</h2>
+      <div class="share-grid">
+        <div class="share-card"><img id="shareImg" alt="The verdict card"><div class="share-card-actions"><button type="button" class="secondary-button" id="shareCopyImg">Copy image</button><button type="button" class="secondary-button" id="shareSave">Save PNG</button></div></div>
+        <div class="share-post"><label for="shareText">Your post <small>edit as you like</small></label><textarea id="shareText" rows="7" spellcheck="false"></textarea><div class="share-post-actions"><button type="button" class="secondary-button" id="shareCopyText">Copy text</button><span class="count mono" id="shareCount"></span></div></div>
+      </div>
+      <div class="share-nets" id="shareNets"></div>
+      <button type="button" class="primary-button big" id="shareNative" hidden>Share from this device…</button>
+      <p class="share-note">Share buttons on social networks only take text and a link, never a picture, so paste the card into your post after the composer opens (Copy image, then ⌘V). The link itself unfurls with the site preview.</p>
     </div>
   </dialog>
 </main>`;
@@ -166,6 +181,8 @@ let verdictShown = false;
 let bracket: Bracket | null = null;
 let humanPick: string | null = null;     // the ad the visitor said they would buy, this game
 let lastCard: Parameters<typeof renderCard>[0] | null = null;
+let lastCanvas: HTMLCanvasElement | null = null;
+let lastPost = '';
 let bug: FlyBug;
 
 const worker = new Worker(new URL('./neural/eye.worker.ts', import.meta.url), { type: 'module' });
@@ -510,7 +527,9 @@ function playVerdict(final: boolean): void {
     $('resultText').textContent = plainReason(win, lose);
     const img = $<HTMLImageElement>('cardPreview');
     img.removeAttribute('src');
-    if (lastCard) void renderCard(lastCard).then((cv) => { const small = document.createElement('canvas'); small.width = 600; small.height = 315; small.getContext('2d')!.drawImage(cv, 0, 0, 600, 315); img.src = small.toDataURL('image/jpeg', 0.85); });
+    lastCanvas = null;
+    if (lastCard) void renderCard(lastCard).then((cv) => { lastCanvas = cv; const small = document.createElement('canvas'); small.width = 600; small.height = 315; small.getContext('2d')!.drawImage(cv, 0, 0, 600, 315); img.src = small.toDataURL('image/jpeg', 0.85); });
+    lastPost = buildPost({ winner: win, loser: lose, bracketSize: bracket ? ads.length : null, human: humanPick ? { picked: adById(humanPick)?.name ?? 'one', agreed: humanPick === win.id } : null });
     const h = humanLine(win);
     $('resultHuman').hidden = !h;
     if (h) { $('resultHuman').className = `human ${h.cls}`; $('resultHuman').innerHTML = h.html; }
@@ -975,6 +994,46 @@ worker.onmessage = (e: MessageEvent<WorkerEvent>) => {
   }
 };
 
+// ---- share ---------------------------------------------------------------------------------
+const cardFilename = () => `swat-or-buy-${(lastCard?.winner.name ?? 'verdict').replace(/[^a-z0-9]+/gi, '-').toLowerCase()}.png`;
+async function ensureCanvas(): Promise<HTMLCanvasElement | null> {
+  if (lastCanvas) return lastCanvas;
+  if (!lastCard) return null;
+  lastCanvas = await renderCard(lastCard);
+  return lastCanvas;
+}
+function updateShareCount(): void {
+  const n = xLength($<HTMLTextAreaElement>('shareText').value);
+  $('shareCount').textContent = `${n} / 280 for X`;
+  $('shareCount').classList.toggle('over', n > 280);
+}
+async function openShare(): Promise<void> {
+  const cv = await ensureCanvas();
+  if (!cv) { toast('No verdict to share yet.'); return; }
+  const dlg = $<HTMLDialogElement>('share');
+  const small = document.createElement('canvas'); small.width = 800; small.height = 420; small.getContext('2d')!.drawImage(cv, 0, 0, 800, 420);
+  $<HTMLImageElement>('shareImg').src = small.toDataURL('image/jpeg', 0.88);
+  $<HTMLTextAreaElement>('shareText').value = lastPost;
+  updateShareCount();
+  $('shareNets').innerHTML = NETWORKS.map((n) => `<button type="button" class="net ${n.id}" data-net="${n.id}"><i></i>${n.label}</button>`).join('');
+  $('shareNets').querySelectorAll<HTMLButtonElement>('[data-net]').forEach((b) => b.addEventListener('click', () => {
+    const net = NETWORKS.find((n) => n.id === b.dataset.net)!;
+    window.open(net.url($<HTMLTextAreaElement>('shareText').value, SITE_URL), '_blank', 'noopener');
+  }));
+  $('shareNative').hidden = !hasNativeShare();
+  dlg.showModal();
+  dlg.querySelector('.dialog-body')!.scrollTop = 0;
+}
+function wireShare(): void {
+  $('shareButton').addEventListener('click', () => { void openShare(); });
+  $('shareClose').addEventListener('click', () => $<HTMLDialogElement>('share').close());
+  $('shareText').addEventListener('input', updateShareCount);
+  $('shareCopyText').addEventListener('click', async () => { try { await copyText($<HTMLTextAreaElement>('shareText').value); toast('Post copied.'); } catch (e) { toast((e as Error).message); } });
+  $('shareCopyImg').addEventListener('click', async () => { const cv = await ensureCanvas(); if (!cv) return; try { await copyImage(cv); toast('Card copied. Paste it into your post.'); } catch (e) { toast(`${(e as Error).message}. Use Save PNG instead.`); } });
+  $('shareSave').addEventListener('click', async () => { const cv = await ensureCanvas(); if (cv) download(cv, cardFilename()); });
+  $('shareNative').addEventListener('click', async () => { const cv = await ensureCanvas(); if (!cv) return; try { const r = await shareNative($<HTMLTextAreaElement>('shareText').value, cv, cardFilename()); if (r === 'unsupported') toast('This browser has no share sheet. Use the buttons above.'); } catch (e) { toast((e as Error).message); } });
+}
+
 // ---- boot ---------------------------------------------------------------------------------
 async function acceptQuery(): Promise<void> {
   const q = new URLSearchParams(location.search);
@@ -1026,10 +1085,11 @@ async function boot(): Promise<void> {
   $('rematchButton').addEventListener('click', () => { void startShow(true); });
   $('newButton').addEventListener('click', () => { if (mode !== 'judge') clearAds(); });
   $('cardButton').addEventListener('click', async () => {
-    if (!lastCard) { toast('No verdict to save yet.'); return; }
-    const canvas = await renderCard(lastCard);
-    download(canvas, `swat-or-buy-${lastCard.winner.name.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}.png`);
+    const cv = await ensureCanvas();
+    if (!cv) { toast('No verdict to save yet.'); return; }
+    download(cv, cardFilename());
   });
+  wireShare();
   $('stopButton').addEventListener('click', () => send({ type: 'abort' }));
   const speedInput = $<HTMLInputElement>('speed');
   speedInput.addEventListener('input', () => { speed = Number(speedInput.value); $('speedValue').textContent = `${speed.toFixed(2)}×`; });
