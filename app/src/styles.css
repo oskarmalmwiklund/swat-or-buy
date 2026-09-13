@@ -360,6 +360,9 @@ main { padding: 12px; }
 
 .mind-foot { padding: 10px 20px 14px; font-size: 11px; color: var(--on-brain-muted); border-top: 1px solid var(--brain-line); line-height: 1.5; flex-shrink: 0; display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: center; }
 .mind-foot .text-button { font-size: 11px; padding: 0; color: var(--on-brain); text-decoration: underline; }
+.mind-foot .foot-links { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.mind-foot .foot-links a { font-size: 11px; color: var(--on-brain); }
+.dialog { overflow: auto; }
 
 /* ---- studio popover ----------------------------------------------------------------- */
 .studio { position: absolute; z-index: 20; top: 58px; right: 16px; width: 280px; background: var(--paper); color: var(--ink); border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; display: grid; gap: 12px; box-shadow: 0 16px 60px rgba(0,0,0,0.25); }

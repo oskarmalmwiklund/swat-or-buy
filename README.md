@@ -7,6 +7,63 @@ opinions about your positioning.
 Upload one ad and see what the fly's optic lobe makes of it. Upload two and they are shown side
 by side, once in each screen order. Stills or video up to five seconds. The fly cannot read.
 
+**Live:** [swat-or-buy.vercel.app](https://swat-or-buy.vercel.app) · the browser game show. The
+Python service below is the full-brain, null-controlled report.
+
+## How the show works, in pictures
+
+Screenshots of the live app, a fruit fly's retina and lamina (29,195 real neurons from the
+MaleCNS connectome) running in the browser.
+
+**1. Two ads. One fly.** The landing page. Drop your own ads, or browse the sample gallery.
+The eye on the right is already alive; the screen stays grey until there is something to see.
+
+![Landing page](docs/screenshots/01-landing.jpg)
+
+**2. Pick contestants.** Thirteen real public-domain ads from 1891 to 1921 and ten modern
+mock ads for fictional brands. Two for a duel, up to eight for a bracket.
+
+![Sample gallery](docs/screenshots/02-gallery.jpg)
+
+**3. The line-up.** Contestants A and B face each other across the start button. Drag an ad
+to move it on the fly's screen, scroll to resize. The glance map (aqua) marks the lamina
+columns that stand out from the rest of the field.
+
+![Line-up](docs/screenshots/03-lineup.jpg)
+
+**4. Fly vision.** The screen as the photoreceptors sample it: one dot per cell. R1–R6 in
+grey with no red channel, R8 cells in blue or green. A red button is nearly dark to this eye.
+
+![Fly vision](docs/screenshots/04-fly-vision.jpg)
+
+**5. Human vs fly.** Before the fly sees anything, you call the winner. The device keeps a
+running count of how often you and the fly agree.
+
+![Human pick](docs/screenshots/05-human-pick.jpg)
+
+**6. The show.** Lights down. Per contestant: one second of the ad, one second of its pixels
+shuffled, one second of a flat grey of the same brightness, one second of the ad inside a busy
+mock feed. Then the face-off, one ad per eye, both orders. The fly narrates each measurement
+as a subtitle, and the scoreboard's tug-of-war bars fill in as the numbers land.
+
+![The show](docs/screenshots/06-show.jpg)
+
+**7. Verdict.** Ranked by the layout-driven part of the lamina's response (glance minus
+shuffled), with side by side, the feed and hold as tie-breaks. The winner gets the BUY and the
+fly lands on it; the loser gets the swatter. One plain sentence explains why.
+
+![Verdict](docs/screenshots/07-verdict.jpg)
+
+**8. Brackets.** Three to eight contestants run match by match; the tree on the right shows
+who advanced. The final gets the full verdict.
+
+![Bracket](docs/screenshots/08-bracket.jpg)
+
+**9. Save the card.** A 1200×630 PNG of the face-off with the stamps, the scores and the
+human-vs-fly line, for sharing.
+
+![Verdict card](docs/screenshots/09-verdict-card.jpg)
+
 ## What it is
 
 - The whole male fruit fly central nervous system (MaleCNS v1.0, released 3 Sep 2026 by
@@ -128,3 +185,43 @@ classifier, graded cells are simulated as spiking cells, there are no gap juncti
 types or neuromodulation, and it is a male brain. The simulator is deterministic: the same ad
 gives the same answer forever, and the jitter interval is trial noise we add, not biology.
 Ads you test must be ones you have the right to run.
+
+## Credits
+
+**Data.** [MaleCNS v1.0](https://male-cns.janelia.org/), the male *Drosophila melanogaster*
+central nervous system connectome, by the MaleCNS collaboration: FlyEM at HHMI Janelia, the
+Cambridge Connectomics Group (MRC Laboratory of Molecular Biology and the University of
+Cambridge) and Google Research. Creative Commons Attribution 4.0. Downloaded by `swat prepare`;
+the browser app ships a 29,195-neuron cut of the retina and lamina.
+
+**Simulator.** The leaky integrate-and-fire kernel, connectome import and retinal mapping are
+copied from [Bananflugakompassen](https://github.com/Fluffet/bananflugakompassen) by Fluffet,
+itself from [Stonkfly](https://github.com/nftechie/stonkfly) and
+[DOOMFLY](https://github.com/nftechie/doomfly) by nftechie, all MIT (`LICENSE.upstream`). The
+browser kernel in `app/src/neural/EyeBrain.ts` is a TypeScript port of the same model.
+
+**Method references.** Approach and avoidance MBON sets: Aso et al. 2014, *eLife*,
+doi:10.7554/eLife.04580. Spectral residual saliency: Hou and Zhang 2007. Receptor spectral
+weights: a rounded reading of published *Drosophila* rhodopsin sensitivities (Rh1, Rh5, Rh6).
+[flyvis](https://github.com/TuragaLab/flyvis) (Turaga lab) is the proposed graded front-end for
+the deep readouts; [ommatid](https://github.com/FutureJJ/ommatid) and FlyScroll showed the way
+for chaining a vision model into MaleCNS and for a habituation-driven feed.
+
+**Design.** Layout and button language follow [Swat](https://github.com/hrook1/Swat) by hrook1,
+used as a reference; no code was copied. Colours are the [Multiply](https://multiply.co) brand
+palette. Type: Bricolage Grotesque by Mathieu Triay, DM Sans by Colophon Foundry, JetBrains
+Mono by JetBrains, all under the SIL Open Font License, shipped via Fontsource.
+
+**Libraries.** Browser: Three.js, Vite, Vitest, TypeScript. Python: NumPy, pandas, pyarrow,
+OpenCV, Pillow, FastAPI, uvicorn. Hosting: Vercel.
+
+**Sample ads.** The thirteen vintage samples are real advertisements in the public domain,
+from Wikimedia Commons: Coca-Cola (1890s), Kodak (1900), Pears' Soap after Millais (1912),
+Michelin by O'Galop (1898), Chocolat Menier by Firmin Bouisset (1894), Absinthe Robette by
+Privat-Livemont (1896), Bitter Campari by Leonetto Cappiello (1921), Kellogg's (1909), Moulin
+Rouge by Toulouse-Lautrec (1891), Job by Alphonse Mucha (1896), Victor (1920), Ivory Soap by
+Strobridge & Co. (1898) and Ford Model T (1908). Commons file names are in `THIRD_PARTY.md`.
+The ten mock ads are for fictional brands and were made for this project.
+
+**People.** Made by Oskar Malm Wiklund at [Multiply](https://multiply.co), built with
+[Claude Code](https://claude.com/claude-code). The fly did not consent to any of this.

@@ -109,7 +109,7 @@ app.innerHTML = `
         <div class="tally" id="tally" hidden><i></i><span id="tallyText"></span></div>
         <div class="stream" id="stream"><p class="idle">Every line here is a measurement that just happened in the eye on the right. The fly looks at each ad for a second, then the same pixels shuffled, then a flat grey of the same brightness, then the ad dropped into a busy feed, then both side by side. Then it swats one.</p></div>
       </section>
-      <footer class="mind-foot"><span class="mono" id="footFacts"></span><span>Retina and lamina of <a href="https://male-cns.janelia.org/">MaleCNS v1.0</a> (CC BY 4.0). Model activity, not fly behaviour.</span><button type="button" class="text-button" id="aboutButton2">How it works</button></footer>
+      <footer class="mind-foot"><span class="mono" id="footFacts"></span><span>Retina and lamina of <a href="https://male-cns.janelia.org/">MaleCNS v1.0</a> (CC BY 4.0). Model activity, not fly behaviour.</span><span class="foot-links"><button type="button" class="text-button" id="aboutButton2">How it works</button><button type="button" class="text-button" id="creditsButton">Credits</button><a href="https://github.com/oskarmalmwiklund/swat-or-buy">GitHub</a><a href="https://multiply.co">Multiply</a></span></footer>
     </aside>
   </section>
   <dialog class="dialog" id="about">
@@ -134,6 +134,9 @@ app.innerHTML = `
       <p>Before the show you can say which ad you would buy. The result tells you whether the fly agreed, and this device keeps a running count. It never leaves your browser.</p>
       <h3>What it cannot tell you</h3>
       <p>It cannot read, it has no memory of brands, it does not get bored (the model has no adaptation, so a second viewing looks exactly like the first), and in the full 166,700-neuron model the image signal stops at the lamina: nothing deeper responds to picture structure. So this page shows exactly the part that carries signal. The full-brain report with null controls lives in the repository.</p>
+      <h3>Credits</h3>
+      <p>Connectome: <a href="https://male-cns.janelia.org/">MaleCNS v1.0</a> by the MaleCNS collaboration (FlyEM at HHMI Janelia, the Cambridge Connectomics Group, Google Research), CC BY 4.0. Simulator: a port of <a href="https://github.com/Fluffet/bananflugakompassen">Bananflugakompassen</a> by Fluffet, itself from <a href="https://github.com/nftechie/stonkfly">Stonkfly</a> and DOOMFLY by nftechie, MIT. Design reference: <a href="https://github.com/hrook1/Swat">Swat</a> by hrook1. Palette: <a href="https://multiply.co">Multiply</a>. Type: Bricolage Grotesque by Mathieu Triay, DM Sans by Colophon Foundry, JetBrains Mono by JetBrains, all under the SIL Open Font License. Rendering: Three.js. Vintage sample ads are public-domain works from Wikimedia Commons (O’Galop, Bouisset, Privat-Livemont, Cappiello, Toulouse-Lautrec, Mucha and others); the mock ads were made for this project. Built by Oskar Malm Wiklund at Multiply with Claude Code.</p>
+      <p>Source, data notes and the full-brain report: <a href="https://github.com/oskarmalmwiklund/swat-or-buy">github.com/oskarmalmwiklund/swat-or-buy</a>. Full credits in the repository’s THIRD_PARTY.md.</p>
     </div>
   </dialog>
 </main>`;
@@ -1031,7 +1034,8 @@ async function boot(): Promise<void> {
   const speedInput = $<HTMLInputElement>('speed');
   speedInput.addEventListener('input', () => { speed = Number(speedInput.value); $('speedValue').textContent = `${speed.toFixed(2)}×`; });
   const about = $<HTMLDialogElement>('about');
-  for (const id of ['aboutButton', 'aboutButton2']) $(id).addEventListener('click', () => about.showModal());
+  for (const id of ['aboutButton', 'aboutButton2']) $(id).addEventListener('click', () => { about.showModal(); about.querySelector('.dialog-body')!.scrollTop = 0; });
+  $('creditsButton').addEventListener('click', () => { about.showModal(); const h = [...about.querySelectorAll('h3')].find((el) => el.textContent === 'Credits'); h?.scrollIntoView({ block: 'start' }); });
   $('aboutClose').addEventListener('click', () => about.close());
   document.addEventListener('keydown', (e) => {
     if (e.key === '?' && !about.open) about.showModal();
