@@ -23,6 +23,8 @@ away behind a tab on the right edge and slides in when the show starts.
 
 ![Landing page](docs/screenshots/01-landing.jpg)
 
+![Add your own](docs/screenshots/01b-add-your-own.jpg)
+
 **2. Pick contestants.** Thirteen real public-domain ads from 1891 to 1921 and ten modern
 mock ads for fictional brands. Two for a duel, up to eight for a bracket.
 
