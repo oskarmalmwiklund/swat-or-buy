@@ -9,12 +9,14 @@ timestep as the Python model. No backend, so it deploys to Vercel as plain files
 Screenshots of every step are in the [root README](../README.md#how-the-show-works-in-pictures).
 
 1. **Landing.** A hero on the fly's grey screen ("Two ads. One fly. Swat or Buy.") and two
-   empty contestant slots, A and B. Drop, pick or paste an image or short video into each,
-   or press **Browse the sample ads**: a gallery of 13 real public-domain ads (1891 to 1921,
-   from Wikimedia Commons) and 10 modern mock ads for fictional brands. Tick two for a duel
-   or up to eight for a bracket, or press **Surprise me**. The line-up is `public/samples/`
-   plus `index.json`; credits are in `../THIRD_PARTY.md`. The eye on the right is already
-   alive; the screen stays blank until there is something to look at.
+   empty contestant slots, A and B. **Add the contestants** opens a gallery of 13 real
+   public-domain ads (1891 to 1921, from Wikimedia Commons) and 10 modern mock ads for
+   fictional brands: tick two for a duel or up to eight for a bracket, or press **Surprise
+   me**. **Add your own** opens a short guide (formats, how many, what the fly can see, nothing
+   uploaded) and the file picker; dropping or pasting works too. The line-up is
+   `public/samples/` plus `index.json`; credits are in `../THIRD_PARTY.md`. The fly's eye
+   panel starts folded behind a tab on the right edge (a pill at phone width), opens on its
+   own when a show starts, and can be folded or opened with the tab at any time.
 2. **Looking.** Click a thumbnail to show that ad to the fly, drag to move it, scroll to
    resize. The glance map paints the lamina columns that stand out from the rest of the
    field, smoothed over time. **Fly vision** redraws the screen as the photoreceptors sample

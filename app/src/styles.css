@@ -6,6 +6,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   --display: 'Bricolage Grotesque Variable', system-ui, sans-serif;
+  --eye-w: clamp(320px, 26vw, 420px);
   --mono: 'JetBrains Mono Variable', ui-monospace, monospace;
 }
 * { box-sizing: border-box; }
@@ -38,6 +39,7 @@ canvas { display: block; }
 .primary-button.orange { background: var(--orange); color: #fff; box-shadow: 0 4px 0 var(--orange-edge); }
 .primary-button.orange:hover:not(:disabled) { background: var(--orange-hover); }
 .primary-button.big { padding: 16px 26px; font-size: 18px; min-height: 54px; border-radius: 14px; }
+.secondary-button.big { padding: 15px 24px; font-size: 17px; min-height: 54px; border-radius: 14px; }
 .secondary-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1.5px solid var(--control-line); border-radius: 10px; padding: 10px 16px; font-size: 14px; font-weight: 600; min-height: 42px; background: transparent; color: inherit; white-space: nowrap; }
 .secondary-button:hover:not(:disabled) { background: color-mix(in srgb, currentColor 8%, transparent); }
 .text-button { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; padding: 6px 0; color: var(--muted); }
@@ -51,7 +53,8 @@ canvas { display: block; }
 
 /* ---- layout ------------------------------------------------------------------------- */
 main { padding: 12px; }
-.layout { display: grid; grid-template-columns: minmax(0, 1fr) clamp(320px, 26vw, 420px); gap: 14px; height: max(700px, calc(100dvh - 24px)); }
+.layout { display: grid; grid-template-columns: minmax(0, 1fr) var(--eye-w); gap: 14px; height: max(700px, calc(100dvh - 24px)); transition: grid-template-columns 0.45s cubic-bezier(0.2, 0.9, 0.3, 1); }
+.layout.eye-hidden { grid-template-columns: minmax(0, 1fr) 0; gap: 0; }
 .card { min-width: 0; min-height: 0; border: 1px solid var(--line); border-radius: 22px; overflow: hidden; background: var(--paper); display: flex; flex-direction: column; }
 .card-head { height: 62px; flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0 20px; }
 .tools { display: flex; gap: 6px; align-items: center; }
@@ -273,6 +276,17 @@ main { padding: 12px; }
 @keyframes ready-pulse { 0%, 100% { box-shadow: 0 4px 0 var(--violet-edge), 0 0 0 0 rgba(151,71,255,0.5); } 60% { box-shadow: 0 4px 0 var(--violet-edge), 0 0 0 16px rgba(151,71,255,0); } }
 
 /* ---- the eye card ------------------------------------------------------------------- */
+/* On wide screens the card is fixed to the right edge and slides off when folded; the grid
+   only reserves its column. The tab on its left edge is the handle. */
+.mind-card { position: fixed; top: 12px; right: 12px; bottom: 12px; width: var(--eye-w); z-index: 30; transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.3, 1); }
+.layout.eye-hidden .mind-card { transform: translateX(calc(100% + 12px)); }
+.eye-tab { position: fixed; top: 50%; right: calc(var(--eye-w) + 12px); transform: translateY(-50%); width: 38px; height: 168px; border-radius: 14px 0 0 14px; background: var(--brain); color: var(--on-brain); border: 1px solid var(--brain-line); border-right: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 12px 0; box-shadow: -8px 0 30px rgba(11,7,20,0.25); cursor: pointer; z-index: 31; transition: right 0.45s cubic-bezier(0.2, 0.9, 0.3, 1), background 0.15s; }
+.eye-tab.closed { right: 0; }
+.eye-tab .label { writing-mode: vertical-rl; transform: rotate(180deg); font-family: var(--display); font-weight: 650; font-size: 13px; letter-spacing: 0.02em; white-space: nowrap; }
+.eye-tab .arrow { font-size: 20px; line-height: 1; font-weight: 700; color: var(--pink); }
+.eye-tab .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--role-lamina); box-shadow: 0 0 0 3px color-mix(in srgb, var(--role-lamina) 30%, transparent); animation: blink 1.6s steps(2) infinite; }
+.eye-tab:hover { background: var(--brain-raised); }
+.eye-tab:focus-visible { outline: 3px solid var(--pink); outline-offset: -3px; }
 .mind-card { background: var(--brain); color: var(--on-brain); border-color: var(--brain); --line: var(--brain-line); --muted: var(--on-brain-muted); --paper: var(--brain-raised); --wash: var(--brain-raised); --focus: var(--pink); --control-line: var(--brain-line); overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--brain-line) transparent; }
 .mind-card .card-head h2 { font-size: 24px; letter-spacing: -0.8px; font-weight: 550; white-space: nowrap; }
 .mind-card .card-head h2 span { color: var(--pink); }
@@ -389,6 +403,17 @@ main { padding: 12px; }
 .facts span { display: grid; gap: 2px; font-size: 12px; color: var(--muted); }
 .facts b { font-family: var(--display); font-size: 22px; color: var(--ink); letter-spacing: -0.02em; font-weight: 650; }
 
+/* add-your-own guide */
+.dialog.own { max-width: 640px; }
+.dialog.own .kicker { display: inline-block; font-size: 11px; font-weight: 750; letter-spacing: 0.12em; text-transform: uppercase; color: #fff; background: var(--violet); border-radius: 20px; padding: 5px 10px; margin-top: 6px; }
+.dialog.own h2 { margin: 10px 28px 14px 0; }
+.own-steps { display: grid; gap: 12px; counter-reset: step; margin: 6px 0 20px; }
+.own-steps li { position: relative; padding-left: 44px; font-size: 14px; line-height: 1.55; color: var(--muted); counter-increment: step; }
+.own-steps li::before { content: counter(step); position: absolute; left: 0; top: 0; width: 30px; height: 30px; border-radius: 50%; background: var(--violet-wash); color: var(--violet-ink); font-family: var(--display); font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+.own-steps li b { color: var(--ink); font-weight: 650; }
+.own-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.own-hint { font-size: 13px; color: var(--muted); }
+
 /* share dialog */
 .dialog.share { max-width: 760px; }
 .dialog.share .kicker { display: inline-block; font-size: 11px; font-weight: 750; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); background: var(--yellow); border-radius: 20px; padding: 5px 10px; margin-top: 6px; }
@@ -427,6 +452,10 @@ main { padding: 12px; }
   .vs { flex-direction: row; min-width: 0; flex-wrap: wrap; }
   .result { grid-template-columns: 1fr; justify-items: center; }
   .result .actions { flex-direction: row; }
+  .mind-card { position: static; width: auto; transform: none !important; }
+  .layout.eye-hidden .mind-card { display: none; }
+  .eye-tab, .eye-tab.closed { right: 12px; top: auto; bottom: 12px; transform: none; width: auto; height: auto; flex-direction: row; padding: 10px 14px; border-radius: 999px; border-right: 1px solid var(--brain-line); box-shadow: 0 8px 30px rgba(11,7,20,0.35); }
+  .eye-tab .label { writing-mode: horizontal-tb; transform: none; }
   .eye-view { height: 240px; }
   .commentary { min-height: 220px; }
   .meters { gap: 8px; }

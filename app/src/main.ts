@@ -59,10 +59,11 @@ app.innerHTML = `
           <h2>Two ads. One fly.<br><em>Swat</em> or <span class="buy">Buy</span>.</h2>
           <p class="lead">Drop two images or short videos, or up to eight for a bracket. A fruit fly's eye looks at each, then both at once, and swats one. It cannot read, so bring your best layout.</p>
           <div class="hero-actions">
-            <label class="primary-button big" for="filePick">Add the contestants<input class="hidden-input" type="file" id="filePick" accept="image/*,video/*" multiple></label>
-            <button type="button" class="secondary-button" id="sampleButton">Browse the sample ads</button>
+            <button type="button" class="primary-button big" id="sampleButton">Add the contestants</button>
+            <button type="button" class="secondary-button big" id="ownButton">Add your own</button>
+            <input class="hidden-input" type="file" id="filePick" accept="image/*,video/*" multiple>
           </div>
-          <span class="hero-foot">Or paste an image. Nothing leaves your browser. An experiment by <a href="https://multiply.co">multiply.co</a>.</span>
+          <span class="hero-foot">Pick from 23 sample ads, or bring yours. Nothing leaves your browser. An experiment by <a href="https://multiply.co">multiply.co</a>.</span>
         </div>
         <div class="banner" id="banner"><span class="kicker" id="bannerKicker"></span><span class="title" id="bannerTitle"></span><span class="sub" id="bannerSub"></span></div>
         <div class="caption" id="caption" hidden><span class="who">The fly</span><span id="captionText"></span></div>
@@ -93,7 +94,7 @@ app.innerHTML = `
         <div class="lineup" id="lineupB"></div>
       </div>
     </div>
-    <aside class="card mind-card" aria-label="The fly's eye, live">
+    <aside class="card mind-card" id="mindCard" aria-label="The fly's eye, live">
       <div class="card-head"><h2>The fly's <span>eye</span></h2><span class="mono" id="circuitTag"></span></div>
       <div class="eye-view" id="eyeView">
         <canvas id="eye"></canvas>
@@ -113,6 +114,7 @@ app.innerHTML = `
       <footer class="mind-foot"><span class="mono" id="footFacts"></span><span>Retina and lamina of <a href="https://male-cns.janelia.org/">MaleCNS v1.0</a> (CC BY 4.0). Model activity, not fly behaviour. An experiment by <a href="https://multiply.co">multiply.co</a>.</span><span class="foot-links"><button type="button" class="text-button" id="aboutButton2">How it works</button><button type="button" class="text-button" id="creditsButton">Credits</button><a href="https://github.com/oskarmalmwiklund/swat-or-buy">GitHub</a><a href="https://multiply.co">Multiply</a></span></footer>
     </aside>
   </section>
+  <button type="button" class="eye-tab closed" id="eyeTab" aria-expanded="false" aria-controls="mindCard" title="Show or hide the fly's eye"><span class="arrow">‹</span><span class="label">The fly's eye</span><i class="dot"></i></button>
   <dialog class="dialog" id="about">
     <div class="dialog-body">
       <button type="button" class="icon-button dialog-close" id="aboutClose" aria-label="Close">✕</button>
@@ -154,6 +156,20 @@ app.innerHTML = `
       <p class="share-note">Share buttons on social networks only take text and a link, never a picture, so paste the card into your post after the composer opens (Copy image, then ⌘V). The link itself unfurls with the site preview.</p>
     </div>
   </dialog>
+  <dialog class="dialog own" id="own">
+    <div class="dialog-body">
+      <button type="button" class="icon-button dialog-close" id="ownClose" aria-label="Close">✕</button>
+      <span class="kicker">Add your own</span>
+      <h2>Bring the ads you actually argue about.</h2>
+      <ol class="own-steps">
+        <li><b>What to add.</b> Still images (PNG, JPG, WebP) or short videos (MP4, WebM). A video is judged on its first two seconds. Any size works: each ad is fitted onto the fly’s 320 × 180 screen, so landscape fills it and portrait gets grey at the sides.</li>
+        <li><b>How many.</b> Two for a duel. Three to eight for a bracket, where the winner of each match advances.</li>
+        <li><b>What the fly can see.</b> Contrast, layout, brightness and blue against green. It has no red receptor and it cannot read, so headlines, offers and brand names count for nothing. Two versions of the same ad, or yours against a competitor’s, make the best contests.</li>
+        <li><b>Where it goes.</b> Nowhere. The neurons run in this tab; your files never leave your browser.</li>
+      </ol>
+      <div class="own-actions"><label class="primary-button big" for="filePick">Choose files</label><span class="own-hint">or drop them on the stage, or paste an image with ⌘V</span></div>
+    </div>
+  </dialog>
 </main>`;
 
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
@@ -182,6 +198,16 @@ let bracket: Bracket | null = null;
 let humanPick: string | null = null;     // the ad the visitor said they would buy, this game
 let lastCard: Parameters<typeof renderCard>[0] | null = null;
 let lastCanvas: HTMLCanvasElement | null = null;
+let eyeOpen = false;
+function setEye(open: boolean): void {
+  eyeOpen = open;
+  document.querySelector('.layout')!.classList.toggle('eye-hidden', !open);
+  const tab = $('eyeTab');
+  tab.classList.toggle('closed', !open);
+  tab.setAttribute('aria-expanded', String(open));
+  tab.querySelector('.arrow')!.textContent = open ? '›' : '‹';
+  tab.querySelector('.label')!.textContent = open ? 'Fold away' : "The fly's eye";
+}
 let lastPost = '';
 let bug: FlyBug;
 
@@ -801,6 +827,7 @@ async function runMatch(list: Ad[]): Promise<void> {
   $('thinkStatus').textContent = 'preparing frames';
   setState('On air', 'judging');
   bug.wander(1);
+  if (!eyeOpen) setEye(true);
   for (const a of ads) if (a.video) (a.source as HTMLVideoElement).pause();
   const payload: JudgeAd[] = [];
   judgeFrames = new Map();
@@ -1070,6 +1097,12 @@ async function boot(): Promise<void> {
   };
   for (const id of ['filePick', 'filePickMore']) $<HTMLInputElement>(id).addEventListener('change', (e) => { const t = e.target as HTMLInputElement; if (t.files) acceptFiles(t.files); t.value = ''; });
   $('sampleButton').addEventListener('click', () => { void openGallery(); });
+  const own = $<HTMLDialogElement>('own');
+  $('ownButton').addEventListener('click', () => own.showModal());
+  $('ownClose').addEventListener('click', () => own.close());
+  $<HTMLInputElement>('filePick').addEventListener('change', () => { if (own.open) own.close(); });
+  $('eyeTab').addEventListener('click', () => setEye(!eyeOpen));
+  setEye(false);
   $('galleryButton').addEventListener('click', () => { void openGallery(); });
   ['dragenter', 'dragover'].forEach((ev) => viewport.addEventListener(ev, (e) => { e.preventDefault(); viewport.classList.add('is-over'); }));
   ['dragleave', 'drop'].forEach((ev) => viewport.addEventListener(ev, (e) => { e.preventDefault(); viewport.classList.remove('is-over'); }));

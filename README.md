@@ -16,8 +16,10 @@ Python service below is the full-brain, null-controlled report. Swat or Buy is a
 Screenshots of the live app, a fruit fly's retina and lamina (29,195 real neurons from the
 MaleCNS connectome) running in the browser.
 
-**1. Two ads. One fly.** The landing page. Drop your own ads, or browse the sample gallery.
-The eye on the right is already alive; the screen stays grey until there is something to see.
+**1. Two ads. One fly.** The landing page. **Add the contestants** opens the sample gallery;
+**Add your own** explains what to bring (stills or short videos, two for a duel, up to eight
+for a bracket, nothing uploaded) and opens the file picker. The fly's eye panel starts folded
+away behind a tab on the right edge and slides in when the show starts.
 
 ![Landing page](docs/screenshots/01-landing.jpg)
 
@@ -28,7 +30,8 @@ mock ads for fictional brands. Two for a duel, up to eight for a bracket.
 
 **3. The line-up.** Contestants A and B face each other across the start button. Drag an ad
 to move it on the fly's screen, scroll to resize. The glance map (aqua) marks the lamina
-columns that stand out from the rest of the field.
+columns that stand out from the rest of the field. The tab on the right edge opens the eye
+panel at any time.
 
 ![Line-up](docs/screenshots/03-lineup.jpg)
 
