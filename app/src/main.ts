@@ -1,7 +1,10 @@
+import { inject } from '@vercel/analytics';
 import '@fontsource-variable/bricolage-grotesque';
 import '@fontsource-variable/dm-sans';
 import '@fontsource-variable/jetbrains-mono';
 import './styles.css';
+
+inject();
 import { labsBadge } from './labs/badge';
 import { Narrator, type AdResult, type Line } from './judge/narrator';
 import { flat, permutation, scramble, composePair, composeFeed, FEED_RECT } from './judge/measure';
