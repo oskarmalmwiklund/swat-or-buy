@@ -8,8 +8,9 @@ Upload one ad and see what the fly's optic lobe makes of it. Upload two and they
 by side, once in each screen order. Stills or video up to five seconds. The fly cannot read.
 
 **Live:** [swat-or-buy.vercel.app](https://swat-or-buy.vercel.app) · the browser game show. The
-Python service below is the full-brain, null-controlled report. Swat or Buy is an experiment by
-[Multiply](https://multiply.co).
+Python service below is the full-brain, null-controlled report. Swat or Buy is a
+[Multiply](https://multiply.co) Labs experiment; more of them at
+[multiply.co/labs](https://multiply.co/labs), and `LABS.md` has the badge every experiment carries.
 
 ## How the show works, in pictures
 

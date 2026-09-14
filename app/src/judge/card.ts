@@ -141,7 +141,7 @@ export async function renderCard(input: CardInput): Promise<HTMLCanvasElement> {
   c.textAlign = 'left'; c.fillStyle = palette.onBrainMuted; c.font = '500 13px "DM Sans Variable", system-ui, sans-serif';
   c.fillText('Retina and lamina of MaleCNS v1.0 (CC BY 4.0). Model activity, not fly behaviour. It cannot read.', 48, H - 36);
   c.textAlign = 'right'; c.fillStyle = palette.onBrain; c.font = '600 14px "DM Sans Variable", system-ui, sans-serif';
-  c.fillText('swat-or-buy.vercel.app · an experiment by multiply.co', W - 48, H - 36);
+  c.fillText('swat-or-buy.vercel.app · a Multiply Labs experiment · multiply.co/labs', W - 48, H - 36);
   return canvas;
 }
 

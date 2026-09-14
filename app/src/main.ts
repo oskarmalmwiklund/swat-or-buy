@@ -2,6 +2,7 @@ import '@fontsource-variable/bricolage-grotesque';
 import '@fontsource-variable/dm-sans';
 import '@fontsource-variable/jetbrains-mono';
 import './styles.css';
+import { labsBadge } from './labs/badge';
 import { Narrator, type AdResult, type Line } from './judge/narrator';
 import { flat, permutation, scramble, composePair, composeFeed, FEED_RECT } from './judge/measure';
 import { download, renderCard } from './judge/card';
@@ -39,6 +40,7 @@ app.innerHTML = `
     <div class="card stage-card" id="stageCard">
       <div class="card-head">
         <a class="brand" href="/" aria-label="Swat or Buy home">Swat<span class="or">or</span>Buy<span class="period">.</span></a>
+        ${labsBadge({ small: true })}
         <ol class="rounds" id="rounds" hidden aria-label="Rounds">
           <li class="match" id="matchChip" hidden></li>
           <li data-round="warmup">Warm-up</li><li data-round="a">Contestant A</li><li data-round="b">Contestant B</li><li data-round="faceoff">Face-off</li><li data-round="verdict">Verdict</li>
@@ -63,7 +65,7 @@ app.innerHTML = `
             <button type="button" class="secondary-button big" id="ownButton">Add your own</button>
             <input class="hidden-input" type="file" id="filePick" accept="image/*,video/*" multiple>
           </div>
-          <span class="hero-foot">Pick from 23 sample ads, or bring yours. Nothing leaves your browser. An experiment by <a href="https://multiply.co">multiply.co</a>.</span>
+          <span class="hero-foot">Pick from 23 sample ads, or bring yours. Nothing leaves your browser. A <a href="https://multiply.co">Multiply</a> Labs experiment; more at <a href="https://multiply.co/labs">multiply.co/labs</a>.</span>
         </div>
         <div class="banner" id="banner"><span class="kicker" id="bannerKicker"></span><span class="title" id="bannerTitle"></span><span class="sub" id="bannerSub"></span></div>
         <div class="caption" id="caption" hidden><span class="who">The fly</span><span id="captionText"></span></div>
@@ -111,7 +113,7 @@ app.innerHTML = `
         <div class="tally" id="tally" hidden><i></i><span id="tallyText"></span></div>
         <div class="stream" id="stream"><p class="idle">Every line here is a measurement that just happened in the eye on the right. The fly looks at each ad for a second, then the same pixels shuffled, then a flat grey of the same brightness, then the ad dropped into a busy feed, then both side by side. Then it swats one.</p></div>
       </section>
-      <footer class="mind-foot"><span class="mono" id="footFacts"></span><span>Retina and lamina of <a href="https://male-cns.janelia.org/">MaleCNS v1.0</a> (CC BY 4.0). Model activity, not fly behaviour. An experiment by <a href="https://multiply.co">multiply.co</a>.</span><span class="foot-links"><button type="button" class="text-button" id="aboutButton2">How it works</button><button type="button" class="text-button" id="creditsButton">Credits</button><a href="https://github.com/oskarmalmwiklund/swat-or-buy">GitHub</a><a href="https://multiply.co">Multiply</a></span></footer>
+      <footer class="mind-foot"><span class="mono" id="footFacts"></span><span>Retina and lamina of <a href="https://male-cns.janelia.org/">MaleCNS v1.0</a> (CC BY 4.0). Model activity, not fly behaviour. A <a href="https://multiply.co">Multiply</a> Labs experiment; more at <a href="https://multiply.co/labs">multiply.co/labs</a>.</span><span class="foot-links"><button type="button" class="text-button" id="aboutButton2">How it works</button><button type="button" class="text-button" id="creditsButton">Credits</button><a href="https://github.com/oskarmalmwiklund/swat-or-buy">GitHub</a><a href="https://multiply.co/labs">Multiply Labs</a></span></footer>
     </aside>
   </section>
   <button type="button" class="eye-tab closed" id="eyeTab" aria-expanded="false" aria-controls="mindCard" title="Show or hide the fly's eye"><span class="arrow">‹</span><span class="label">The fly's eye</span><i class="dot"></i></button>
@@ -139,7 +141,7 @@ app.innerHTML = `
       <p>It cannot read, it has no memory of brands, it does not get bored (the model has no adaptation, so a second viewing looks exactly like the first), and in the full 166,700-neuron model the image signal stops at the lamina: nothing deeper responds to picture structure. So this page shows exactly the part that carries signal. The full-brain report with null controls lives in the repository.</p>
       <h3>Credits</h3>
       <p>Connectome: <a href="https://male-cns.janelia.org/">MaleCNS v1.0</a> by the MaleCNS collaboration (FlyEM at HHMI Janelia, the Cambridge Connectomics Group, Google Research), CC BY 4.0. Simulator: a port of <a href="https://github.com/Fluffet/bananflugakompassen">Bananflugakompassen</a> by Fluffet, itself from <a href="https://github.com/nftechie/stonkfly">Stonkfly</a> and DOOMFLY by nftechie, MIT. Design reference: <a href="https://github.com/hrook1/Swat">Swat</a> by hrook1. Palette: <a href="https://multiply.co">Multiply</a>. Type: Bricolage Grotesque by Mathieu Triay, DM Sans by Colophon Foundry, JetBrains Mono by JetBrains, all under the SIL Open Font License. Rendering: Three.js. Vintage sample ads are public-domain works from Wikimedia Commons (O’Galop, Bouisset, Privat-Livemont, Cappiello, Toulouse-Lautrec, Mucha and others); the mock ads were made for this project. Built by Oskar Malm Wiklund at Multiply with Claude Code.</p>
-      <p>Source, data notes and the full-brain report: <a href="https://github.com/oskarmalmwiklund/swat-or-buy">github.com/oskarmalmwiklund/swat-or-buy</a>. Full credits in the repository’s THIRD_PARTY.md. Swat or Buy is an experiment by <a href="https://multiply.co">Multiply</a>.</p>
+      <p>Source, data notes and the full-brain report: <a href="https://github.com/oskarmalmwiklund/swat-or-buy">github.com/oskarmalmwiklund/swat-or-buy</a>. Full credits in the repository’s THIRD_PARTY.md. Swat or Buy is a <a href="https://multiply.co">Multiply</a> Labs experiment, one of several at <a href="https://multiply.co/labs">multiply.co/labs</a>.</p>
     </div>
   </dialog>
   <dialog class="dialog share" id="share">

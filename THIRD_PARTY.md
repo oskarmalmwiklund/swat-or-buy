@@ -9,6 +9,8 @@
   (FlyEM / HHMI Janelia, University of Cambridge, MRC Laboratory of Molecular Biology, Google
   Research), Creative Commons Attribution 4.0. Downloaded separately by `swat prepare`; see
   `swatorbuy/fly/datasets.json` and `swatorbuy/fly/sources.lock.json`.
+- The test tube in the Multiply Labs badge (`app/src/labs/badge.ts`) is TestTube01 from
+  [Hugeicons](https://hugeicons.com) core free icons, MIT.
 - Approach and avoidance MBON sets follow Aso et al. 2014, eLife, doi:10.7554/eLife.04580.
 - Spectral residual saliency follows Hou and Zhang 2007.
 - Fonts in the Python report page are loaded from Google Fonts (Bricolage Grotesque, IBM Plex);

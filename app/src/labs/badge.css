@@ -1,0 +1,19 @@
+/* Multiply Labs badge. Self-contained: drop badge.ts + this file into any experiment.
+   Lime pill, dark green test tube and wordmark. Meant to stick out on any ground.
+   Set --mlabs-font on an ancestor to use the experiment's own sans. */
+.mlabs {
+  --mlabs-h: 30px;
+  --mlabs-bg: #9AE600; --mlabs-bg: oklch(84.1% 0.238 128.85);
+  --mlabs-ink: #192E03; --mlabs-ink: oklch(27.4% 0.072 132.109);
+  display: inline-flex; align-items: center; gap: 7px; height: var(--mlabs-h); padding: 0 12px 0 9px;
+  border-radius: 999px; background: var(--mlabs-bg); color: var(--mlabs-ink);
+  font-family: var(--mlabs-font, 'Figtree', system-ui, -apple-system, sans-serif); font-size: 13px; line-height: 1;
+  letter-spacing: -0.01em; text-decoration: none; white-space: nowrap; flex: none;
+  transition: filter 0.2s, transform 0.2s;
+}
+.mlabs:hover { filter: brightness(1.06); transform: translateY(-1px); }
+.mlabs svg { width: 17px; height: 17px; display: block; flex: none; }
+.mlabs b { font-weight: 700; }
+.mlabs span { font-weight: 500; opacity: 0.78; }
+.mlabs.small { --mlabs-h: 26px; font-size: 12px; gap: 6px; padding: 0 10px 0 8px; }
+.mlabs.small svg { width: 15px; height: 15px; }
